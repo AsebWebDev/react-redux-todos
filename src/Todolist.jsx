@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 class Todolist extends Component {
 
   render() {
-    let todos = this.state.todos.map((task, index) => (
+    let todos = this.props.todos.map((task, index) => (
       <Todo task={task} key={index} />
     ));
 
@@ -17,4 +17,10 @@ class Todolist extends Component {
   }
 }
 
-export default connect()(Todolist)
+function mapStateToProps(reduxState){
+  return {
+    todos: reduxState.todos
+  }
+}
+
+export default connect(mapStateToProps)(Todolist)
