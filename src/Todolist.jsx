@@ -1,13 +1,8 @@
 import React, { Component } from "react";
 import Todo from "./Todo";
+import { connect } from 'react-redux';
 
-export default class Todolist extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      todos: ["Eat", "Sleep", "Go home"]
-    };
-  }
+class Todolist extends Component {
 
   render() {
     let todos = this.state.todos.map((task, index) => (
@@ -21,3 +16,5 @@ export default class Todolist extends Component {
     );
   }
 }
+
+export default connect()(Todolist)
