@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Todo = require('../models/todo');
+const Todo = require('../models/Todo');
 
 router.get("/", function(req, res, next){
   Todo.find({})
@@ -20,4 +20,4 @@ router.delete("/:id", function(req, res, next){
   .catch(err => next(err));
 })
 
-module.exports = router,
+module.exports = router;
