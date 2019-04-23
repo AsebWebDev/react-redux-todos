@@ -8,4 +8,16 @@ router.get("/", function(req, res, next){
   .catch(err => next(err));
 })
 
+router.post("/", function(req, res, next){
+  Todo.create(req.body)
+  .then(todo => res.status(201).send(todo))
+  .catch(err => next(err));
+})
+
+router.delete("/:id", function(req, res, next){
+  Todo.findByIdAndRemove(req.params.id)
+  .then(todo => res.send(todo))
+  .catch(err => next(err));
+})
+
 module.exports = router,
