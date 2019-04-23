@@ -1,14 +1,16 @@
 import React, { Component } from "react";
 import Todo from "./Todo";
 import { connect } from 'react-redux';
-import { ADD_TODO } from "./actioncreators";
-
 
 class Todolist extends Component {
   constructor(props) {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.removeTodo = this.removeTodo.bind(this);
+    this.state={
+      task: ''
+    }
   }
 
   handleSubmit(e) {
@@ -26,9 +28,16 @@ class Todolist extends Component {
     })
   }
 
+  removeTodo(id) {
+    this.props.dispatch({
+      type: "REMOVE_TODO",
+      id
+    });
+  }
+
   render() {
     let todos = this.props.todos.map((val, index) => (
-      <Todo task={val.task} key={index} />
+      <Todo removeTodo={this.removeTodo.bind(this, val.id)} task={val.task} key={index} />
     ));
 
     return (
