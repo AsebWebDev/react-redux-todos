@@ -46,3 +46,14 @@ export function addTodo(task) {
     .catch(err => console.log("Something went wrong.", err))
   }
 }
+
+export function removeTodo(id) {
+  return dispatch => {
+    return fetch(`http://localhost:3001/api/todos/${id}`, {
+      method: "DELETE",
+    })
+    .then(res => res.json())
+    .then(data => dispatch(handleRemove(id)))
+    .catch(err => console.log("Something went wrong.", err))
+  }
+}
